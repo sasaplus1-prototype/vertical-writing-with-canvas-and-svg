@@ -16,9 +16,7 @@
       '<svg xmlns="http://www.w3.org/2000/svg" width="' + canvas.width + '" height="' + canvas.height + '">' +
         '<foreignObject width="100%" height="100%">' +
           '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:40px; width: 100px; overflow-wrap: break-word; text-align: center; line-height: 1; font-family: serif;">' +
-            input.value.split('').map(function(char) {
-              return '<div>' + char + '</div>';
-            }).join('') +
+            input.value.split('').map(function(char) { return '<div>' + escape(char) + '</div>'; }).join('') +
           '</div>' +
         '</foreignObject>' +
       '</svg>'
@@ -42,5 +40,20 @@
     };
     image.src = url;
   }, false);
+
+  /**
+   * escape text
+   *
+   * @param {string} text
+   * @return {string}
+   */
+  function escape(text) {
+    return text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/'/g, '&apos;')
+      .replace(/"/g, '&quot;');
+  }
 
 }());
