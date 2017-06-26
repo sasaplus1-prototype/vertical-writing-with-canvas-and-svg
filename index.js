@@ -2,7 +2,8 @@
 
   'use strict';
 
-  var input = document.getElementById('js-input');
+  var input = document.getElementById('js-input'),
+      button = document.getElementById('js-to-data-url');
 
   var canvas = document.getElementById('js-canvas'),
       context = canvas.getContext('2d');
@@ -55,5 +56,13 @@
       .replace(/'/g, '&apos;')
       .replace(/"/g, '&quot;');
   }
+
+  button.addEventListener('click', function(event) {
+    try {
+      canvas.toDataURL();
+    } catch(e) {
+      alert(e);
+    }
+  }, false);
 
 }());
